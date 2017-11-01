@@ -6,6 +6,7 @@ public class GazeController : MonoBehaviour {
 
 	public Camera playerCamera;
 	private LineRenderer gazeLine;
+	private float worldRadius = 4f;
 
 	// Use this for initialization
 	void Start () {
@@ -14,9 +15,12 @@ public class GazeController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 gazeDestination = playerCamera.ViewportToWorldPoint (new Vector3 (0.5f, 0.5f, 10));
+		//sets endpoints of GazeObject and CameraView
+		transform.position = playerCamera.ViewportToWorldPoint (new Vector3 (0.2f, 0.7f, worldRadius));
+
 		Vector3 gazeOrigin = transform.position;
-//		gazeOrigin.y += 0.2f;
+//		Vector3 gazeDestination = playerCamera.ViewportToWorldPoint (new Vector3 (0.5f, 0.5f, worldRadius));
+		Vector3 gazeDestination = new Vector3(0.5f, 0.5f, 10f);
 
 		transform.LookAt (gazeDestination);
 		gazeLine.SetPosition (0, gazeOrigin);
